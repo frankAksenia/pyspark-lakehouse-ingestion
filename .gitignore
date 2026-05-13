@@ -1,0 +1,52 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.coverage
+.ruff_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data lakehouse (Delta tables, processed data)
+lakehouse/
+
+# Data
+/data/raw/*
+*.parquet
+*.csv
+*.json
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Reports & logs
+reports/
+documentation/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Scripts (keep run_python.sh for project setup)
+# run_python.sh

@@ -1,0 +1,6 @@
+pyspark==4.1.1
+delta-spark==4.2.0
+pandas==3.0.2
+pyarrow==24.0.0
+pytest==9.0.3
+ruff==0.15.12
