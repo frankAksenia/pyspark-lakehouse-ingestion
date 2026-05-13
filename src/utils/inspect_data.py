@@ -53,5 +53,30 @@ def inspect_raw_data():
         print("Raw data file not found")
 
 
+def inspect_bronze_data():
+    bronze_path = Path("lakehouse/bronze/trips")
+
+    if bronze_path.exists():
+        print("\n Inspecting BRONZE layer...")
+        print(f"Path: {bronze_path}")
+
+        # Read all parquet files in the bronze directory
+        dataset = ds.dataset(str(bronze_path), format="parquet")
+        table = dataset.to_table()
+        df = table.to_pandas()
+
+        print(f"Shape: {df.shape[0]} rows × {df.shape[1]} columns")
+        print(f"Columns: {list(df.columns)}")
+        print("\n Sample data:")
+        print(df.head())
+        print("\n Data types:")
+        print(df.dtypes)
+        summarize_invalid_data(df, "BRONZE")
+
+    else:
+        print("Bronze data not found")
+
+
 if __name__ == "__main__":
     inspect_raw_data()
+    inspect_bronze_data()
