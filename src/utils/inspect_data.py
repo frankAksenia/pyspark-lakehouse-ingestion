@@ -4,7 +4,8 @@ from pathlib import Path
 
 
 def summarize_invalid_data(df, label: str):
-    print(f"\n------------------------Invalid data summary for {label}:-------------------------")
+    print(
+        f"\n------------------------Invalid data summary for {label}:-------------------------")
 
     null_counts = df.isna().sum()
     null_counts = null_counts[null_counts > 0].sort_values(ascending=False)
@@ -38,7 +39,6 @@ def inspect_raw_data():
         print("\n------------------------Inspecting RAW data...-------------------------")
         print(f"File: {raw_file}")
         print(f"Size: {raw_file.stat().st_size / (1024*1024):.1f} MB")
-
         df = pd.read_parquet(raw_file)
         print(f"Shape: {df.shape[0]} rows × {df.shape[1]} columns")
         print(f"Columns: {list(df.columns)}")
@@ -49,29 +49,6 @@ def inspect_raw_data():
         summarize_invalid_data(df, "RAW")
     else:
         print("Raw data file not found")
-
-
-def inspect_bronze_data():
-    bronze_path = Path("lakehouse/bronze/trips")
-
-    if bronze_path.exists():
-        print("\n------------------------Inspecting BRONZE layer...-------------------------")
-        print(f"Path: {bronze_path}")
-
-        dataset = ds.dataset(str(bronze_path), format="parquet")
-        table = dataset.to_table()
-        df = table.to_pandas()
-
-        print(f"Shape: {df.shape[0]} rows × {df.shape[1]} columns")
-        print(f"Columns: {list(df.columns)}")
-        print("\n Sample data:")
-        print(df.head())
-        print("\n Data types:")
-        print(df.dtypes)
-        summarize_invalid_data(df, "BRONZE")
-
-    else:
-        print("Bronze data not found")
 
 
 def inspect_silver_valid_data():
@@ -123,6 +100,5 @@ def inspect_silver_rejected_data():
 
 if __name__ == "__main__":
     inspect_raw_data()
-    inspect_bronze_data()
     inspect_silver_valid_data()
     inspect_silver_rejected_data()

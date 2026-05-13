@@ -48,7 +48,7 @@ def add_rejection_reason(df):
             F.when(F.col("passenger_count").isNull(), F.lit("passenger count is null"),),
             F.when(~F.col("passenger_count").between(1, 6),F.lit("passenger count outside 1-6"),),
             F.when(F.col("fare_amount").isNull(), F.lit("fare amount is null")),
-            F.when(F.col("fare_amount") < 0, F.lit("fare amount is negative")),
+            F.when(F.col("fare_amount") <= 0, F.lit("fare amount is not positive")),
             F.when(F.col("total_amount").isNull(), F.lit("total amount is null")),
             F.when(F.col("total_amount") <= 0, F.lit("total amount is not positive"),),
             F.when(F.col("avg_speed_mph") > 100, F.lit("average speed above 100 mph"),),
