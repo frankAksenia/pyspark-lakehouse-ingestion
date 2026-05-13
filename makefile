@@ -5,12 +5,12 @@ install:
 
 download:	
 	python -m src.jobs.download_data
-
-run:	
-	python src/jobs/ingest_bronze.py	
-	python src/jobs/transform_silver.py	
-	python src/jobs/data_quality.py	
-	python src/jobs/build_gold.py
+	
+run:
+	python -m src.jobs.ingest_bronze
+	python -m src.jobs.transform_silver	
+	python -m src.jobs.data_quality
+	python -m src.jobs.build_gold
 
 test:	
 	pytest -q
