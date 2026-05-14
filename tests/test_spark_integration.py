@@ -7,8 +7,7 @@ from src.utils.spark import get_spark
 from src.jobs.transform_silver import clean_trips, add_rejection_reason
 
 
-def test_silver_transformation_splits_valid_and_invalid_trips():
-    spark = get_spark("test_silver_transformation")
+def test_silver_transformation_splits_valid_and_invalid_trips(spark):
 
     rows = [
         Row(
@@ -66,5 +65,3 @@ def test_silver_transformation_splits_valid_and_invalid_trips():
     assert round(valid_row.trip_duration_minutes, 2) == 15.0
     assert round(valid_row.avg_speed_mph, 2) == 12.8
     assert round(valid_row.fare_per_mile, 2) == 5.62
-
-    spark.stop()
