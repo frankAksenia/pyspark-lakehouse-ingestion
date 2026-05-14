@@ -85,8 +85,8 @@ def run_silver_trip_quality_checks(df: DataFrame) -> list[QualityCheckResult]:
         check_not_null(df, "trip_duration_minutes"),
         check_range(df, "trip_duration_minutes", 1, 240),
 
-        check_not_null(df, "trip_distance"),
         check_range(df, "trip_distance", 0.000001, 100),
+        check_max_value(df, "trip_distance", 110),
 
         check_not_null(df, "passenger_count"),
         check_range(df, "passenger_count", 1, 6),

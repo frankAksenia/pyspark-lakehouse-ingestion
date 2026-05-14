@@ -42,7 +42,6 @@ def add_rejection_reason(df):
             F.when(F.col("dropoff_ts") <= F.col("pickup_ts"), F.lit("dropoff before or equal to pickup"),),
             F.when(F.col("trip_duration_minutes").isNull(), F.lit("trip duration is null"),),
             F.when(F.col("trip_duration_minutes") < 1, F.lit("trip duration below 1 minute"),),F.when(F.col("trip_duration_minutes") > 240, F.lit("trip duration above 240 minutes"),),
-            F.when(F.col("trip_distance").isNull(), F.lit("trip distance is null")),
             F.when(F.col("trip_distance") <= 0, F.lit("trip distance is not positive"),),
             F.when(F.col("trip_distance") > 100, F.lit("trip distance above 100 miles"),),
             F.when(F.col("passenger_count").isNull(), F.lit("passenger count is null"),),
