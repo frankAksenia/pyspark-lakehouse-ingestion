@@ -18,6 +18,7 @@ Raw parquet -> Bronze Delta -> Silver Delta + rejected records -> Data quality r
 - Spark SQL
 - Docker
 - Makefile
+- pytest
 
 ## What this project contains
 
