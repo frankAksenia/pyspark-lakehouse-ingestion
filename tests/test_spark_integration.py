@@ -3,7 +3,6 @@ from datetime import datetime
 from pyspark.sql import Row
 from pyspark.sql import functions as F
 
-from src.utils.spark import get_spark
 from src.jobs.transform_silver import clean_trips, add_rejection_reason
 
 
